@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Metamorphous&display=swap');
+body {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-image:url(img/background2.jpg);
+    font-family: "Metamorphous", serif;
+
+
+}
+.menu {
+    background-image:url(img/menuhatter2.png) ;
+    background-repeat: no-repeat;
+    height: 512px;
+    width: 512px;
+    margin: 30px;
+    padding-top: 100px;
+}
+.menutext{
+    padding: 70px;
+}
+.indexbal {
+    text-align: center;
+    height: 512px;
+    width: 512px;
+}
+h1{
+    margin-left: 80px;
+
+}
+a {
+    font-style: none;
+    text-decoration: none;
+}
+a, body {
+color: 	rgb(56, 40, 22);
+}
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 1000;
+  font-size: 24px;
+}
