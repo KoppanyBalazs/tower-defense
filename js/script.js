@@ -1,5 +1,6 @@
 var gameloop = null
 var game_area = document.querySelector(".game")
+game_area.classList.add("gamehatter")
 const music = [
     new Audio("../audio/holst_mars.mp3"),
     new Audio("../audio/klapka.mp3"),
