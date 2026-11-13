@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Metamorphous&display=swap');
-
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css");
 body {
     background-repeat: no-repeat;
     background-size: cover;
@@ -68,5 +68,38 @@ footer {
 }
 .gamehatter {
         background-color: rgb(243, 211, 159);
+}
+.modal-body{
+    background-image:url(../img/modalosdi.jpg) ;
+    height: 330px;
+    color: #ffffff;
+}
+.modal-header{
+    background-image:url(../img/hatterrr.webp);
+    background-repeat: no-repeat;
+    color: white;
+    height: 100px;
 
+}
+.modal-title {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+.modal-footer {
+    background-color: #a52a2a;
+}
+
+i {
+    padding-left: 40px;
+}
+.bi-youtube {
+    color: #ff0000;
+}
+.bi-instagram{
+    color: #833AB4;
+}
+.bi-facebook {
+    color: #1877F2;
+}
+.bi-discord{
+    color: #424549;
 }
