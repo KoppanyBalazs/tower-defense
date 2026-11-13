@@ -10,7 +10,7 @@ const music = [
 music_played = music[Math.floor(Math.random() * music.length)]
 music_played.play()
 gameloop = setInterval(() => {
-    var x = 50
+    var x = 100
     var speed = 2
     enemy = new Enemy(x, 0, speed, ".game")
     enemy.create()
