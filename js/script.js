@@ -29,16 +29,12 @@ for(let i = 0; i < 8; i++){
         y = i - 2
     }
     
-    tower_spot = document.createElement("div")
-    tower_spot.style.left = tower_x[x] + "px"
-    tower_spot.style.top = tower_y[y] + "px" 
+    game_area.innerHTML +=
+    `
+    <div class = "tower-spot" onclick = "new_tower(${tower_x[x]  + 5}, ${tower_y[y] + 5})" style="left: ${tower_x[x]}px; top: ${tower_y[y]}px;">
 
-    tower_spot.classList.add("tower-spot")
-    tower_spot.onclick = () => {
-        new_tower(tower_x[x], tower_y[y])
-        console.log("új")
-    }
-    game_area.appendChild(tower_spot)
+    </div>
+    `
 }
 
 gameloop = setInterval(() => {
