@@ -1,4 +1,6 @@
 const towers = []
+const enemies = []
+const TOWER_RANGE = 200
 var gameloop = null
 var game_area = document.querySelector(".game")
 game_area.classList.add("gamehatter")
@@ -33,7 +35,7 @@ for(let i = 0; i < 8; i++){
     
     game_area.innerHTML +=
     `
-    <div class = "tower-spot" onclick = "new_tower(${tower_x[x]  + 5}, ${tower_y[y] + 5})" style="left: ${tower_x[x]}px; top: ${tower_y[y]}px;">
+    <div class = "tower-spot" onclick = "new_tower(${tower_x[x]  + 5}, ${tower_y[y] + 5}, this)" style="left: ${tower_x[x]}px; top: ${tower_y[y]}px;">
 
     </div>
     `
@@ -44,15 +46,43 @@ gameloop = setInterval(() => {
     var speed = 2
     enemy = new Enemy(x, 0, speed, ".game")
     enemy.create()
+    enemies.push(enemy)
 }, 1000)
 
-function new_tower(x, y){
-    console.log(x)
+function nearest_enemy(tower){
+    for(let i = enemies.length - 1; i >= 0; i--){
+        if(!enemies[i].isAlive()){
+            enemies.splice(i, 1)
+        }
+    }
+
+    let closest = null
+    let closest_distance = TOWER_RANGE
+    for(let i = 0; i < enemies.length; i++){
+        let dx = (enemies[i].getX() + 10) - (tower.getX() + 20)
+        let dy = (enemies[i].getY() + 10) - (tower.getY() + 20)
+        let distance = Math.sqrt(dx * dx + dy * dy)
+        if(distance <= closest_distance){
+            closest = enemies[i]
+            closest_distance = distance
+        }
+    }
+    return closest
+}
+
+function new_tower(x, y, spot){
     if(place == "ijasz"){
         let tower = new Tower(x, y, ".game")
-        tower.shoot(() => {console.log("lövés")})
+        tower.shoot(() => {
+            let target = nearest_enemy(tower)
+            if(target != null){
+                new Bullet(tower.getX() + 20, tower.getY() + 20, 8, target, ".game")
+            }
+        })
         towers.push(tower)
 
+        spot.removeAttribute("onclick")
+        place = ""
     }
 }
 

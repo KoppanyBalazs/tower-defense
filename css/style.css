@@ -78,13 +78,13 @@ footer {
 }
 
 .tower{
-    width: 40px;
-    height: 40px;
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    background-image: url(../img/magus_torony.png);
     background-size: contain;
     background-repeat: no-repeat;
-    position: absolute;
-    background-color: #e4c252;
-    border: 1px solid #111;
+    image-rendering: pixelated;
 }
 .gamehatter {
         background-color: rgb(243, 211, 159);
@@ -122,3 +122,11 @@ i {
 }
 .bi-discord{
     color: #424549;}
+.bullet{
+    width: 32px;
+    height: 10px;
+    position: absolute;
+    background-image: url(../img/bullet.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
