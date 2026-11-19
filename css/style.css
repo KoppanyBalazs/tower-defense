@@ -53,18 +53,17 @@ footer {
     margin: 50px auto;
     position: relative;
     overflow: hidden;
-    background-color: rgba(243, 211, 159, 0);
-    
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .enemy{
-    width: 20px;
-    height: 20px;
+    width: 50px;
+    height: 50px;
     background-size: contain;
     background-repeat: no-repeat;
     position: absolute;
-    background-color: #ff2222;
-    
+    background-image:url(../img/viking_balta_enemy.png) ;    
 }
 
 .tower-spot{
@@ -87,7 +86,9 @@ footer {
     image-rendering: pixelated;
 }
 .gamehatter {
-        background-color: rgb(243, 211, 159);
+    background-image:url(../img/legujabbhatter.png);
+        border: 2px solid rgba(0, 0, 0, 0.5);
+
 }
 .modal-body{
     background-image:url(../img/modalosdi.jpg) ;
@@ -123,10 +124,10 @@ i {
 .bi-discord{
     color: #424549;}
 .bullet{
-    width: 32px;
-    height: 10px;
+    width: 50px;
+    height: 30px;
     position: absolute;
-    background-image: url(../img/bullet.png);
+    background-image:url(../img/fireball.png) ;
     background-size: contain;
     background-repeat: no-repeat;
 }
