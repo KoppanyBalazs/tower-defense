@@ -17,12 +17,13 @@ var gameloop = null
 var game_area = document.querySelector(".game")
 var place = ""
 
-
+var pontInterval = null;
 var tower_spot = null
 var tower_x = [20, 640, 90, 540]
 var tower_y = [140, 540, 200, 480, 50, 620]
 var x
 var y
+const magusar = 150;
 for(let i = 0; i < 8; i++){
 
     x = parseInt(i / 2)
@@ -49,6 +50,10 @@ gameloop = setInterval(() => {
     enemies.push(enemy)
 }, 1000)
 
+pontInterval = setInterval(() => {
+    document.querySelector(".pont").innerHTML = Bullet.pont;
+}, 20);
+
 function nearest_enemy(tower){
     for(let i = enemies.length - 1; i >= 0; i--){
         if(!enemies[i].isAlive()){
@@ -71,7 +76,8 @@ function nearest_enemy(tower){
 }
 
 function new_tower(x, y, spot){
-    if(place == "ijasz"){
+    if(place == "magus" && Bullet.pont >= magusar){
+        Bullet.pont  -= magusar;
         let tower = new Tower(x, y, ".game")
         tower.shoot(() => {
             let target = nearest_enemy(tower)
@@ -91,6 +97,6 @@ music_played.addEventListener("ended", () => {
     music_played.play()
 })
 
-document.querySelector(".ijasz").addEventListener("click", () => {
-    place = "ijasz"
+document.querySelector(".magus").addEventListener("click", () => {
+    place = "magus"
 })

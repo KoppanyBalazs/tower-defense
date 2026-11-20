@@ -8,13 +8,18 @@ class Bullet{
     #element
     #move_interval
 
+    static pont = 250;
+
+
     constructor(x, y, speed, target, container){
         this.setX(x)
         this.setY(y)
         this.setSpeed(speed)
         this.setTarget(target)
         this.setContainer(container)
+
         this.create()
+        
     }
 
     setX(x){
@@ -33,6 +38,7 @@ class Bullet{
         this.#target = target
     }
 
+
     setContainer(container){
         this.#container = document.querySelector(container)
     }
@@ -44,6 +50,8 @@ class Bullet{
     getY(){
         return this.#y
     }
+
+
 
     create(){
         this.#element = document.createElement("div")
@@ -70,8 +78,13 @@ class Bullet{
 
             if(distance <= this.#speed){
                 this.#target.remove()
-                this.remove()
-                return
+                this.classList.add("halal")
+                Bullet.pont += 10;
+                setTimeout(() => {
+                    this.remove()
+                    return
+                }, 1000);
+
             }
 
             this.#x += (dx / distance) * this.#speed

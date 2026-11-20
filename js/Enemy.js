@@ -9,6 +9,7 @@ class Enemy{
     #alive = true
     static #hp = 3
 
+
     constructor(x, y, speed, container){
         this.setX(x)
         this.setY(y)
@@ -94,6 +95,7 @@ class Enemy{
         this.#alive = false
         clearInterval(this.#move_interval)
         this.#element.remove()
+
     }
 
     is_hit(bullets){
