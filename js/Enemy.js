@@ -6,6 +6,7 @@ class Enemy{
     #container
     #element
     #move_interval
+    #alive = true
     static #hp = 3
 
     constructor(x, y, speed, container){
@@ -37,6 +38,10 @@ class Enemy{
 
     getY(){
         return this.#y
+    }
+
+    isAlive(){
+        return this.#alive
     }
 
     create(){
@@ -86,6 +91,7 @@ class Enemy{
     }
 
     remove(){
+        this.#alive = false
         clearInterval(this.#move_interval)
         this.#element.remove()
     }
