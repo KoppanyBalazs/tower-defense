@@ -23,19 +23,20 @@ var tower_x = [20, 640, 90, 540]
 var tower_y = [140, 540, 200, 480, 50, 620]
 var x
 var y
-for(let i = 0; i < 8; i++){
+var facing
+for (let i = 0; i < 8; i++) {
 
     x = parseInt(i / 2)
-    if(i < 2){
-        y = i % 2   
+    if (i < 2) {
+        y = i % 2
     }
-    else{
+    else {
         y = i - 2
     }
-    
+
     game_area.innerHTML +=
-    `
-    <div class = "tower-spot" onclick = "new_tower(${tower_x[x]  + 5}, ${tower_y[y] + 5}, this)" style="left: ${tower_x[x]}px; top: ${tower_y[y]}px;">
+        `
+    <div class = "tower-spot" onclick = "new_tower(${tower_x[x] + 5}, ${tower_y[y] + 5}, ${facing})" style="left: ${tower_x[x]}px; top: ${tower_y[y]}px;">
 
     </div>
     `
@@ -49,20 +50,23 @@ gameloop = setInterval(() => {
     enemies.push(enemy)
 }, 1000)
 
-function nearest_enemy(tower){
-    for(let i = enemies.length - 1; i >= 0; i--){
-        if(!enemies[i].isAlive()){
+function nearest_enemy(tower) {
+    for (let i = enemies.length - 1; i >= 0; i--) {
+        if (!enemies[i].isAlive()) {
             enemies.splice(i, 1)
         }
     }
 
-    let closest = null
-    let closest_distance = TOWER_RANGE
-    for(let i = 0; i < enemies.length; i++){
-        let dx = (enemies[i].getX() + 10) - (tower.getX() + 20)
-        let dy = (enemies[i].getY() + 10) - (tower.getY() + 20)
-        let distance = Math.sqrt(dx * dx + dy * dy)
-        if(distance <= closest_distance){
+    var closest = null
+    var closest_distance = TOWER_RANGE
+    var dx
+    var dy
+    var distance
+    for (let i = 0; i < enemies.length; i++) {
+        dx = (enemies[i].getX() + 10) - (tower.getX() + 20)
+        dy = (enemies[i].getY() + 10) - (tower.getY() + 20)
+        distance = Math.sqrt(dx * dx + dy * dy)
+        if (distance <= closest_distance) {
             closest = enemies[i]
             closest_distance = distance
         }
@@ -70,18 +74,17 @@ function nearest_enemy(tower){
     return closest
 }
 
-function new_tower(x, y, spot){
-    if(place == "ijasz"){
-        let tower = new Tower(x, y, ".game")
+function new_tower(x, y, facing) {
+    if (place == "magus") {
+        let tower = new Tower(x, y, "e", ".game")
         tower.shoot(() => {
             let target = nearest_enemy(tower)
-            if(target != null){
-                new Bullet(tower.getX() + 20, tower.getY() + 20, 8, target, ".game")
+            if (target != null) {
+                new Bullet(tower.getX() + 20, tower.getY() + 20, [6, 6], "magus", target, ".game")
             }
         })
         towers.push(tower)
 
-        spot.removeAttribute("onclick")
         place = ""
     }
 }
@@ -91,6 +94,6 @@ music_played.addEventListener("ended", () => {
     music_played.play()
 })
 
-document.querySelector(".ijasz").addEventListener("click", () => {
-    place = "ijasz"
+document.querySelector(".magus").addEventListener("click", () => {
+    place = "magus"
 })

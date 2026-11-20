@@ -84,9 +84,6 @@ class Enemy{
                 Enemy.#hp--
                 this.remove()
             }
-            if(this.is_hit(document.querySelectorAll(".bullet"))){
-                this.remove()
-            }
         }, 25)
     }
 
@@ -94,11 +91,5 @@ class Enemy{
         this.#alive = false
         clearInterval(this.#move_interval)
         this.#element.remove()
-    }
-
-    is_hit(bullets){
-        for(let i = 0; i < bullets.length; i++){
-            //eltalálta e a golyó?
-        }
     }
 }

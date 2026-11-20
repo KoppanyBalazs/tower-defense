@@ -7,11 +7,14 @@ class Bullet{
     #container
     #element
     #move_interval
+    #type
+    #direction
 
-    constructor(x, y, speed, target, container){
+    constructor(x, y, speed, type, target, container){
         this.setX(x)
         this.setY(y)
         this.setSpeed(speed)
+        this.setType(type)
         this.setTarget(target)
         this.setContainer(container)
         this.create()
@@ -37,12 +40,32 @@ class Bullet{
         this.#container = document.querySelector(container)
     }
 
+    setType(type){
+        this.#type = type
+    }
+
     getX(){
         return this.#x
     }
 
     getY(){
         return this.#y
+    }
+
+    getSpeed(){
+        return this.#speed
+    }
+
+    getTarget(){
+        return this.#target
+    }
+
+    getContainer(){
+        return this.#container
+    }
+
+    getType(){
+        return this.#type
     }
 
     create(){
@@ -58,27 +81,35 @@ class Bullet{
         this.#move_interval = setInterval(() => {
             if(!this.#target.isAlive()){
                 this.remove()
-                return
             }
 
             let target_x = this.#target.getX() + 10
             let target_y = this.#target.getY() + 10
 
-            let dx = target_x - this.#x
-            let dy = target_y - this.#y
+            let dx = target_x - this.getX()
+            let dy = target_y - this.getY()
             let distance = Math.sqrt(dx * dx + dy * dy)
 
-            if(distance <= this.#speed){
+            if(distance <= Math.abs(this.getSpeed()[0])){
                 this.#target.remove()
                 this.remove()
-                return
             }
 
-            this.#x += (dx / distance) * this.#speed
-            this.#y += (dy / distance) * this.#speed
+            if(this.getType() == "magus"){
+                this.setX(this.getX() + (dx / distance) * this.getSpeed()[0])
+                this.setY(this.getY() + (dy / distance) * this.getSpeed()[1])
+            }
+            else if(this.getType() == "ijasz"){
+                if(this.getSpeed()[1] == 0){
+                    this.setX(this.getX() + this.getSpeed()[0])
+                }
+                else if(this.getSpeed[0] == 0){
+                    this.setY(this.getY() + this.getSpeed()[1])
+                }
+            }
 
-            this.#element.style.left = this.#x + "px"
-            this.#element.style.top = this.#y + "px"
+            this.#element.style.left = this.getX() + "px"
+            this.#element.style.top = this.getY() + "px"
             this.#element.style.transform = `translate(-50%, -50%) rotate(${Math.atan2(dy, dx)}rad)`
         }, 25)
     }
