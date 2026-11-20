@@ -78,12 +78,9 @@ class Bullet{
 
             if(distance <= this.#speed){
                 this.#target.remove()
-                this.classList.add("halal")
+                this.remove()
                 Bullet.pont += 10;
-                setTimeout(() => {
-                    this.remove()
                     return
-                }, 1000);
 
             }
 
