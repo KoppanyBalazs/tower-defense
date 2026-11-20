@@ -4,7 +4,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-    background-image: url(../img/background2.jpg);
+    background-image:url(../img/csillogvagod.png) ;
     font-family: "Metamorphous", serif;
     background-color: rgba(255, 255, 255, 0.4);
     background-blend-mode: lighten;
@@ -86,7 +86,7 @@ footer {
     image-rendering: pixelated;
 }
 .gamehatter {
-    background-image:url(../img/legujabbhatter.png);
+    background-image:url(../img/fuhatter5.png);
         border: 2px solid rgba(0, 0, 0, 0.5);
 
 }
@@ -140,9 +140,4 @@ i {
 .coin {
     width: 35px;
     height: 35px;
-}
-.halal{
-    background-image:url(../img/coin.png) ;
-    width: 200px;
-    height: 200px;
 }
