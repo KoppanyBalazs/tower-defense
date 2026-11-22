@@ -1,22 +1,30 @@
 const towers = []
 const enemies = []
-const TOWER_RANGE = 200
+const tower_range = 200
+const lose_modal = new bootstrap.Modal('#myModal')
 var gameloop = null
 var game_area = document.querySelector(".game")
 game_area.classList.add("gamehatter")
+
+var hp_interval = null
+
 const music = [
     new Audio("../audio/holst_mars.mp3"),
-    new Audio("../audio/klapka.mp3"),
-    new Audio("../audio/rakoczi.mp3"),
     new Audio("../audio/wagner_valkyries.mp3"),
+    new Audio("../audio/farewell_of_slavianka.mp3"),
+    new Audio("../audio/shostakovich_waltz_no_2.mp3"),
+    new Audio("../audio/stronghold_appy_times.mp3"),
+    new Audio("../audio/stronghold_castle_jam.mp3"),
+    new Audio("../audio/stronghold_the_chant.mp3"),
+    new Audio("../audio/the_varangians_faraji.mp3"),
+    new Audio("../audio/venice_combat_ac2.mp3"),
+    new Audio("../audio/william_tell.mp3"),
 ]
 music_played = music[Math.floor(Math.random() * music.length)]
 music_played.play()
 
-var gameloop = null
-var game_area = document.querySelector(".game")
+var hp = document.querySelector(".hp")
 var place = ""
-
 
 var tower_spot = null
 var tower_x = [20, 640, 90, 540]
@@ -50,6 +58,15 @@ gameloop = setInterval(() => {
     enemies.push(enemy)
 }, 1000)
 
+hp_interval = setInterval(() => {
+    hp.innerHTML = Enemy.getHp()
+
+    if(Enemy.getHp() <= 0){
+        end_game()
+    }
+
+}, 20)
+
 function nearest_enemy(tower) {
     for (let i = enemies.length - 1; i >= 0; i--) {
         if (!enemies[i].isAlive()) {
@@ -58,7 +75,7 @@ function nearest_enemy(tower) {
     }
 
     var closest = null
-    var closest_distance = TOWER_RANGE
+    var closest_distance = tower_range
     var dx
     var dy
     var distance
@@ -89,8 +106,20 @@ function new_tower(x, y, facing) {
     }
 }
 
+function end_game(){
+    enemies.forEach(enemy => {enemy.remove()});
+    towers.forEach(tower => {tower.remove()});
+    gameloop = null
+    music_played.pause()
+    lose_modal.show()
+}
+
 music_played.addEventListener("ended", () => {
-    music_played = music[Math.floor(Math.random() * music.length)]
+    let last_music = music_played
+    do{
+        music_played = music[Math.floor(Math.random() * music.length)]
+    }while(last_music === music_played)
+    
     music_played.play()
 })
 

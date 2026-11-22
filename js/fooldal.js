@@ -1,6 +1,4 @@
-const myModal = new bootstrap.Modal('#myModal', {
-  keyboard: false
-})
+const myModal = new bootstrap.Modal('#myModal')
 document.querySelector(".credits").addEventListener("click", () => {
     myModal.show();
 })

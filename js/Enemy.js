@@ -44,6 +44,10 @@ class Enemy{
         return this.#alive
     }
 
+    static getHp(){
+        return Enemy.#hp
+    }
+
     create(){
         this.#element = document.createElement("div")//Majd img csak kellenek még képek lowkey
         this.#element.style.left = this.#x + "px"
@@ -82,6 +86,7 @@ class Enemy{
 
             if(this.#y >= this.#container.offsetHeight){
                 Enemy.#hp--
+                console.log(Enemy.#hp)
                 this.remove()
             }
         }, 25)
