@@ -26,11 +26,13 @@ music_played.play()
 var hp = document.querySelector(".hp")
 var place = ""
 
+var pontInterval = null;
 var tower_spot = null
 var tower_x = [20, 640, 90, 540]
 var tower_y = [140, 540, 200, 480, 50, 620]
 var x
 var y
+const magusar = 150;
 var facing
 for (let i = 0; i < 8; i++) {
 
@@ -57,6 +59,10 @@ gameloop = setInterval(() => {
     enemy.create()
     enemies.push(enemy)
 }, 1000)
+
+pontInterval = setInterval(() => {
+    document.querySelector(".pont").innerHTML = Bullet.pont;
+}, 20);
 
 hp_interval = setInterval(() => {
     hp.innerHTML = Enemy.getHp()
@@ -91,9 +97,10 @@ function nearest_enemy(tower) {
     return closest
 }
 
-function new_tower(x, y, facing) {
-    if (place == "magus") {
-        let tower = new Tower(x, y, "e", ".game")
+function new_tower(x, y, spot){
+    if(place == "magus" && Bullet.pont >= magusar){
+        Bullet.pont  -= magusar;
+        let tower = new Tower(x, y, ".game")
         tower.shoot(() => {
             let target = nearest_enemy(tower)
             if (target != null) {

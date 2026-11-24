@@ -10,6 +10,9 @@ class Bullet{
     #type
     #direction
 
+    static pont = 250;
+
+
     constructor(x, y, speed, type, target, container){
         this.setX(x)
         this.setY(y)
@@ -17,7 +20,9 @@ class Bullet{
         this.setType(type)
         this.setTarget(target)
         this.setContainer(container)
+
         this.create()
+        
     }
 
     setX(x){
@@ -35,6 +40,7 @@ class Bullet{
     setTarget(target){
         this.#target = target
     }
+
 
     setContainer(container){
         this.#container = document.querySelector(container)
@@ -93,6 +99,9 @@ class Bullet{
             if(distance <= Math.abs(this.getSpeed()[0])){
                 this.#target.remove()
                 this.remove()
+                Bullet.pont += 10;
+                    return
+
             }
 
             if(this.getType() == "magus"){

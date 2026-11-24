@@ -4,7 +4,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-    background-image: url(../img/background2.jpg);
+    background-image:url(../img/csillogvagod.png) ;
     font-family: "Metamorphous", serif;
     background-color: rgba(255, 255, 255, 0.4);
     background-blend-mode: lighten;
@@ -67,13 +67,13 @@ footer {
 }
 
 .tower-spot{
-    width: 50px;
-    height: 50px;
+    width: 70px;
+    height: 70px;
     background-size: contain;
     background-repeat: no-repeat;
     position: absolute;
-    background-color: #f5be66;
-    border: 1px solid #111;
+
+    background-image:url(../img/towerhatterkiscitrendesebblowkey.png);
 }
 
 .tower{
@@ -86,7 +86,7 @@ footer {
     image-rendering: pixelated;
 }
 .gamehatter {
-    background-image:url(../img/legujabbhatter.png);
+    background-image:url(../img/gta4nicoserbialol.png);
         border: 2px solid rgba(0, 0, 0, 0.5);
 
 }
@@ -134,4 +134,14 @@ i {
     background-image:url(../img/fireball.png) ;
     background-size: contain;
     background-repeat: no-repeat;
+}
+.kicsikep{
+    width: 80px;
+    height: 40px;
+    margin-left:200px;
+}
+
+.coin {
+    width: 35px;
+    height: 35px;
 }
