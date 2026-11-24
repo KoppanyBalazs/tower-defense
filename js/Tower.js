@@ -2,13 +2,15 @@ class Tower{
     #x
     #y
     #speed
+    #facing
     #container
     #element
     #shoot_interval
 
-    constructor(x, y, container){
+    constructor(x, y, facing, container){
         this.setX(x)
         this.setY(y)
+        this.setFacing(facing)
         this.setContainer(container)
         this.create()
     }
@@ -19,6 +21,10 @@ class Tower{
 
     setY(y){
         this.#y = y
+    }
+
+    setFacing(facing){
+        this.#facing = facing
     }
 
     setContainer(container){
@@ -33,11 +39,16 @@ class Tower{
         return this.#y
     }
 
+    getFacing(){
+        return this.#facing
+    }
+
     create(){
-        this.#element = document.createElement("div")//Majd img csak kellenek még képek lowkey
+        this.#element = document.createElement("div")
         this.#element.style.left = this.#x + "px"
         this.#element.style.top = this.#y + "px"
         this.#element.classList.add("tower")
+        this.#element.classList.add(`facing-${this.getFacing()}`)
         this.#container.appendChild(this.#element)
     }
 

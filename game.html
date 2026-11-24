@@ -32,7 +32,27 @@
             </div>
         </section>
     </main>
-    <footer><p>Better to die with honor than live with shame.</p></footer>
+    <footer>
+        <p>Better to die with honor than live with shame.</p>
+    </footer>
+
+    <div class="modal" tabindex="-1" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Vesztettél!</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body lose">
+                    <p>A vikingek felégettek mindent, elvitték az egyház aranyát és elrabolták a lakosokat!</p>
+
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><a href="index.html">Bezárás</a></button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/Enemy.js"></script>

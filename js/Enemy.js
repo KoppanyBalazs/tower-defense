@@ -45,6 +45,10 @@ class Enemy{
         return this.#alive
     }
 
+    static getHp(){
+        return Enemy.#hp
+    }
+
     create(){
         this.#element = document.createElement("div")//Majd img csak kellenek még képek lowkey
         this.#element.style.left = this.#x + "px"
@@ -83,9 +87,7 @@ class Enemy{
 
             if(this.#y >= this.#container.offsetHeight){
                 Enemy.#hp--
-                this.remove()
-            }
-            if(this.is_hit(document.querySelectorAll(".bullet"))){
+                console.log(Enemy.#hp)
                 this.remove()
             }
         }, 25)
@@ -96,11 +98,5 @@ class Enemy{
         clearInterval(this.#move_interval)
         this.#element.remove()
 
-    }
-
-    is_hit(bullets){
-        for(let i = 0; i < bullets.length; i++){
-            //eltalálta e a golyó?
-        }
     }
 }

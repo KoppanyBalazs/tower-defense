@@ -91,9 +91,13 @@ footer {
 
 }
 .modal-body{
-    background-image:url(../img/modalosdi.jpg) ;
+    background-image:url(../img/modalosdi.jpg);
     height: 330px;
     color: #ffffff;
+}
+
+.lose{
+    background-image:url(../img/lose_bg.webp);
 }
 .modal-header{
     background-image:url(../img/hatterrr.webp);
