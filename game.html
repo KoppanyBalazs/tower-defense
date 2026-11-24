@@ -1,15 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Raiders: Viking Attack</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-    <header><h1>EZ ITT A GAME ITT MOST ITT</h1></header>
+    <header>
+        <h1 class="text-center">Raiders: Viking Attack</h1>
+    </header>
     <main>
-        <div class="container d-flex"></div>
+        <section class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-md-3 menu">
+                    <p class="pt-3 text-center">HP: <span class="hp"></span></p>
+                    <p class="text-center"><a href="index.html">Vissza a főmenübe</a></p>
+                    <div class="d-flex flex-row justify-content-center">
+                        <button class="magus btn btn-warning mx-auto">Íjász torony</button>
+                    </div>
+                </div>
+                <div class="col-12 col-md-9 game"></div>
+            </div>
+        </section>
     </main>
-    <footer></footer>
+    <footer>
+        <p>Better to die with honor than live with shame.</p>
+    </footer>
+
+    <div class="modal" tabindex="-1" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Vesztettél!</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body lose">
+                    <p>A vikingek felégettek mindent, elvitték az egyház aranyát és elrabolták a lakosokat!</p>
+
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><a href="index.html">Bezárás</a></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/Enemy.js"></script>
+    <script src="js/Tower.js"></script>
+    <script src="js/Bullet.js"></script>
+    <script src="js/script.js"></script>
 </body>
+
 </html>
