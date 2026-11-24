@@ -81,12 +81,14 @@ class Bullet{
         this.#element.classList.add("bullet")
         this.#container.appendChild(this.#element)
         this.move()
+        
     }
 
     move(){
         this.#move_interval = setInterval(() => {
             if(!this.#target.isAlive()){
                 this.remove()
+                return
             }
 
             let target_x = this.#target.getX() + 10
@@ -97,10 +99,11 @@ class Bullet{
             let distance = Math.sqrt(dx * dx + dy * dy)
 
             if(distance <= Math.abs(this.getSpeed()[0])){
-                this.#target.remove()
+                if(this.#target.takeDamage(2)){
+                    Bullet.pont += 10
+                }
                 this.remove()
-                Bullet.pont += 10;
-                    return
+                return
 
             }
 

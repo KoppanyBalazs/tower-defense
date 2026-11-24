@@ -7,6 +7,8 @@ class Enemy{
     #element
     #move_interval
     #alive = true
+    #health = 4
+    #bar
     static #hp = 3
 
 
@@ -54,6 +56,9 @@ class Enemy{
         this.#element.style.left = this.#x + "px"
         this.#element.style.top = this.#y + "px"
         this.#element.classList.add("enemy")
+        this.#bar = document.createElement("div")
+        this.#bar.classList.add("hp-bar")
+        this.#element.appendChild(this.#bar)
         this.#container.appendChild(this.#element)
         this.move()
 
@@ -91,6 +96,16 @@ class Enemy{
                 this.remove()
             }
         }, 25)
+    }
+
+    takeDamage(damage){
+        this.#health -= damage
+        this.#bar.style.width = (this.#health / 4 * 100) + "%"
+        if(this.#health <= 0){
+            this.remove()
+            return true
+        }
+        return false
     }
 
     remove(){
