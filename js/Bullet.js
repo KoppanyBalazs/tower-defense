@@ -10,7 +10,7 @@ class Bullet{
     #type
     #direction
 
-    static pont = 250;
+    static pont = 1500;
 
 
     constructor(x, y, speed, type, target, container){

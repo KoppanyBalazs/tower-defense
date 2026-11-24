@@ -49,6 +49,8 @@ class Tower{
         this.#element.style.top = this.#y + "px"
         this.#element.classList.add("tower")
         this.#element.classList.add(`facing-${this.getFacing()}`)
+        console.log(this.#element)
+        console.log(this.#container)
         this.#container.appendChild(this.#element)
     }
 

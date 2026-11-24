@@ -29,7 +29,7 @@ var place = ""
 var pontInterval = null;
 var tower_spot = null
 var tower_x = [20, 640, 90, 540]
-var tower_y = [140, 540, 200, 480, 50, 620]
+var tower_y = [140, 540, 225, 450, 50, 620]
 var x
 var y
 const magusar = 150;
@@ -46,7 +46,7 @@ for (let i = 0; i < 8; i++) {
 
     game_area.innerHTML +=
         `
-    <div class = "tower-spot" onclick = "new_tower(${tower_x[x] + 5}, ${tower_y[y] + 5}, ${facing})" style="left: ${tower_x[x]}px; top: ${tower_y[y]}px;">
+    <div class = "tower-spot" onclick = "new_tower(${tower_x[x] + 5}, ${tower_y[y] - 35}, ${facing})" style="left: ${tower_x[x]}px; top: ${tower_y[y]}px;">
 
     </div>
     `
@@ -100,7 +100,7 @@ function nearest_enemy(tower) {
 function new_tower(x, y, spot){
     if(place == "magus" && Bullet.pont >= magusar){
         Bullet.pont  -= magusar;
-        let tower = new Tower(x, y, ".game")
+        let tower = new Tower(x, y, "e" ,".game")
         tower.shoot(() => {
             let target = nearest_enemy(tower)
             if (target != null) {

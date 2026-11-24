@@ -61,7 +61,7 @@ class Enemy{
 
     move(){
         this.#move_interval = setInterval(() => {
-            if(this.#y < 550 && this.#x <= 550){
+            if(this.#y < 525 && this.#x <= 550){
                 if(this.#y < 150){
                     this.#y += this.#speed
                 }
@@ -71,7 +71,7 @@ class Enemy{
                 
             }
             else if(this.#x >= 100){
-                if(this.#y < 550){
+                if(this.#y < 525){
                     this.#y += this.#speed
                 }
                 else{
