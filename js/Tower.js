@@ -1,15 +1,17 @@
 class Tower{
     #x
     #y
+    #interval_ms
     #speed
     #facing
     #container
     #element
     #shoot_interval
 
-    constructor(x, y, facing, container){
+    constructor(x, y, interval_ms, facing, container){
         this.setX(x)
         this.setY(y)
+        this.setIntervalMs(interval_ms)
         this.setFacing(facing)
         this.setContainer(container)
         this.create()
@@ -21,6 +23,10 @@ class Tower{
 
     setY(y){
         this.#y = y
+    }
+
+    setIntervalMs(interval_ms){
+        this.#interval_ms = interval_ms
     }
 
     setFacing(facing){
@@ -39,6 +45,10 @@ class Tower{
         return this.#y
     }
 
+    getIntervalMs(){
+        return this.#interval_ms
+    }
+
     getFacing(){
         return this.#facing
     }
@@ -55,7 +65,7 @@ class Tower{
     }
 
     shoot(func_to_execute){
-        this.#shoot_interval = setInterval(func_to_execute, 1500)
+        this.#shoot_interval = setInterval(func_to_execute, this.getIntervalMs())
     }
 
     remove(){

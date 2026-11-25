@@ -33,6 +33,7 @@ var tower_y = [140, 540, 225, 450, 50, 620]
 var x
 var y
 const magusar = 150;
+const langar = 100
 var facing
 for (let i = 0; i < 8; i++) {
 
@@ -98,19 +99,27 @@ function nearest_enemy(tower) {
 }
 
 function new_tower(x, y, spot){
+    let tower
+    let dam
     if(place == "magus" && Bullet.pont >= magusar){
-        Bullet.pont  -= magusar;
-        let tower = new Tower(x, y, "e" ,".game")
-        tower.shoot(() => {
-            let target = nearest_enemy(tower)
-            if (target != null) {
-                new Bullet(tower.getX() + 20, tower.getY() + 20, [6, 6], "magus", target, ".game")
-            }
-        })
-        towers.push(tower)
-
-        place = ""
+        dam = 2
+        Bullet.pont -= magusar;
+        tower = new Tower(x, y, 1500, "e", ".game")
     }
+    else if(place == "lang" && Bullet.pont >= langar){
+        dam = 0.15
+        Bullet.pont -= langar;
+        tower = new Tower(x, y, 100, "e", ".game")
+    }
+    tower.shoot(() => {
+        let target = nearest_enemy(tower)
+        if (target != null) {
+            new Bullet(tower.getX() + 20, tower.getY() + 20, 6, dam, target, ".game")
+        }    
+    })
+
+    towers.push(tower)
+    place = ""
 }
 
 function end_game(){
@@ -132,4 +141,9 @@ music_played.addEventListener("ended", () => {
 
 document.querySelector(".magus").addEventListener("click", () => {
     place = "magus"
+})
+
+
+document.querySelector(".lang").addEventListener("click", () => {
+    place = "lang"
 })

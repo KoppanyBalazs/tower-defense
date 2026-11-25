@@ -3,24 +3,24 @@ class Bullet{
     #x
     #y
     #speed
+    #dam
+    #interval_ms
     #target
     #container
     #element
     #move_interval
-    #type
     #direction
 
-    static pont = 1500;
+    static pont = 400;
 
 
-    constructor(x, y, speed, type, target, container){
+    constructor(x, y, speed, dam, target, container){
         this.setX(x)
         this.setY(y)
         this.setSpeed(speed)
-        this.setType(type)
+        this.setDam(dam)
         this.setTarget(target)
         this.setContainer(container)
-
         this.create()
         
     }
@@ -37,6 +37,10 @@ class Bullet{
         this.#speed = speed
     }
 
+    setDam(dam){
+        this.#dam = dam
+    }
+
     setTarget(target){
         this.#target = target
     }
@@ -44,10 +48,6 @@ class Bullet{
 
     setContainer(container){
         this.#container = document.querySelector(container)
-    }
-
-    setType(type){
-        this.#type = type
     }
 
     getX(){
@@ -62,16 +62,20 @@ class Bullet{
         return this.#speed
     }
 
+    getDam(){
+        return this.#dam
+    }
+
+    getIntervalMs(){
+        return this.#interval_ms
+    }
+
     getTarget(){
         return this.#target
     }
 
     getContainer(){
         return this.#container
-    }
-
-    getType(){
-        return this.#type
     }
 
     create(){
@@ -98,8 +102,9 @@ class Bullet{
             let dy = target_y - this.getY()
             let distance = Math.sqrt(dx * dx + dy * dy)
 
-            if(distance <= Math.abs(this.getSpeed()[0])){
-                if(this.#target.takeDamage(2)){
+            if(distance <= Math.abs(this.getSpeed())){
+                console.log(this.getDam())
+                if(this.#target.takeDamage(this.getDam())){
                     Bullet.pont += 10
                 }
                 this.remove()
@@ -107,18 +112,9 @@ class Bullet{
 
             }
 
-            if(this.getType() == "magus"){
-                this.setX(this.getX() + (dx / distance) * this.getSpeed()[0])
-                this.setY(this.getY() + (dy / distance) * this.getSpeed()[1])
-            }
-            else if(this.getType() == "ijasz"){
-                if(this.getSpeed()[1] == 0){
-                    this.setX(this.getX() + this.getSpeed()[0])
-                }
-                else if(this.getSpeed[0] == 0){
-                    this.setY(this.getY() + this.getSpeed()[1])
-                }
-            }
+            this.setX(this.getX() + (dx / distance) * this.getSpeed())
+            this.setY(this.getY() + (dy / distance) * this.getSpeed())
+
 
             this.#element.style.left = this.getX() + "px"
             this.#element.style.top = this.getY() + "px"
