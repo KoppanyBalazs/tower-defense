@@ -55,7 +55,7 @@ class Tower{
     }
 
     shoot(func_to_execute){
-        this.#shoot_interval = setInterval(func_to_execute, 1500)
+        this.#shoot_interval = setInterval(func_to_execute, 1)
     }
 
     remove(){
