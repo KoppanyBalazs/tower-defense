@@ -2,7 +2,6 @@ class Tower{
     #x
     #y
     #interval_ms
-    #speed
     #facing
     #container
     #element
@@ -16,7 +15,7 @@ class Tower{
         this.setIntervalMs(interval_ms)
         this.setFacing(facing)
         this.setContainer(container)
-        this.#type = type
+        this.setType(type)
         this.create()
     }
 
@@ -40,6 +39,10 @@ class Tower{
         this.#container = document.querySelector(container)
     }
 
+    setType(type){
+        this.#type = type
+    }
+
     getX(){
         return this.#x
     }
@@ -56,14 +59,16 @@ class Tower{
         return this.#facing
     }
 
+    getType(){
+        return this.#type
+    }
+
     create(){
         this.#element = document.createElement("div")
         this.#element.style.left = this.#x + "px"
         this.#element.style.top = this.#y + "px"
         this.#element.classList.add(this.#type)
         this.#element.classList.add(`facing-${this.getFacing()}`)
-        console.log(this.#element)
-        console.log(this.#container)
         this.#container.appendChild(this.#element)
         this.#element.addEventListener("click", () => {
         upgradeModal.show()})

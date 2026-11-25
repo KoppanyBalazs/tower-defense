@@ -77,16 +77,37 @@ background-image: url(../img/tower_spot.png);}
     width: 70px;
     height: 70px;
     position: absolute;
-    background-image: url(../img/magus_torony.png);
     background-size: contain;
     background-repeat: no-repeat;
     image-rendering: pixelated;
 }
-.tower-pyro{
-    background-image:url(../img/pyro_torony.png) ;
-    width: 90px;
-    height: 90px;
+
+.tower.facing-e{
+    background-image: url(../img/characters/magus_torony_e.png);
 }
+.tower.facing-w{
+    background-image: url(../img/characters/magus_torony_w.png);
+}
+.tower.facing-n{
+    background-image: url(../img/characters/magus_torony_n.png);
+}
+.tower.facing-s{
+    background-image: url(../img/characters/magus_torony_s.png);
+}
+
+.tower-pyro.facing-e{
+    background-image:url(../img/characters/pyro_torony_e.png) ;
+}
+.tower-pyro.facing-w{
+    background-image:url(../img/characters/pyro_torony_w.png) ;
+}
+.tower-pyro.facing-n{
+    background-image:url(../img/characters/pyro_torony_n.png) ;
+}
+.tower-pyro.facing-s{
+    background-image:url(../img/characters/pyro_torony_s.png) ;
+}
+
 .gamehatter {
     background-image:url(../img/gta4nicoserbialol.png);
         border: 2px solid rgba(0, 0, 0, 0.5);

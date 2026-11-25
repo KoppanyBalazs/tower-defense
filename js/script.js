@@ -12,13 +12,13 @@ var hp_interval = null
 const buildSound = new Audio("../audio/build.mp3")
 
 const music = [
-    //new Audio("../audio/holst_mars.mp3"),
+    new Audio("../audio/holst_mars.mp3"),
    // new Audio("../audio/wagner_valkyries.mp3"),
    // new Audio("../audio/farewell_of_slavianka.mp3"),
    // new Audio("../audio/shostakovich_waltz_no_2.mp3"),
     new Audio("../audio/stronghold_appy_times.mp3"),
-    //new Audio("../audio/stronghold_castle_jam.mp3"),
-   // new Audio("../audio/stronghold_the_chant.mp3"),
+    new Audio("../audio/stronghold_castle_jam.mp3"),
+    new Audio("../audio/stronghold_the_chant.mp3"),
    // new Audio("../audio/the_varangians_faraji.mp3"),
    // new Audio("../audio/venice_combat_ac2.mp3"),
    // new Audio("../audio/william_tell.mp3"),
@@ -34,26 +34,40 @@ var place = ""
 
 var pontInterval = null;
 var tower_spot = null
-var tower_x = [20, 640, 90, 540]
+var tower_x = [20, 630, 90, 540]
 var tower_y = [140, 540, 225, 450, 50, 620]
-var x
-var y
+var tower_facing = ["e", "w", "s", "n"]
 const magusar = 150;
 const langar = 100
-var facing
 for (let i = 0; i < 8; i++) {
-
-    x = parseInt(i / 2)
-    if (i < 2) {
-        y = i % 2
-    }
-    else {
-        y = i - 2
+    let x = parseInt(i / 2)
+    
+    let y = i
+    if (i >= 2) {
+        y -= 2
     }
 
+    let facing
+    if(i < 4){
+        facing = parseInt(i / 2)
+    }
+    else if(i < 6){
+        facing = 3 - (i % 2)
+    }
+    else{
+        facing = 2 + (i % 2)
+    }
+
+    let xy
+    if(facing < 2){
+        xy = [tower_x[x] + 5, tower_y[y] - 35]
+    }
+    else{
+        xy = [tower_x[x] - 20, tower_y[y] - 5]
+    }
     game_area.innerHTML +=
-        `
-    <div class = "tower-spot" onclick = "new_tower(${tower_x[x] + 5}, ${tower_y[y] - 35}, ${facing})" style="left: ${tower_x[x]}px; top: ${tower_y[y]}px;">
+    `
+    <div class = "tower-spot" onclick = "new_tower(${xy[0]}, ${xy[1]}, '${tower_facing[facing]}')" style="left: ${tower_x[x]}px; top: ${tower_y[y]}px;">
 
     </div>
     `
@@ -104,19 +118,19 @@ function nearest_enemy(tower) {
     return closest
 }
 
-function new_tower(x, y, spot){
+function new_tower(x, y, facing){
     let tower
     let dam
     if(place == "magus" && Bullet.pont >= magusar){
         dam = 2
         Bullet.pont -= magusar;
-        tower = new Tower(x, y, 1500, "e", ".game", "tower")
+        tower = new Tower(x, y, 1500, facing, ".game", "tower")
         
     }
     else if(place == "lang" && Bullet.pont >= langar){
         dam = 0.15
         Bullet.pont -= langar;
-        tower = new Tower(x, y, 100, "e", ".game", "tower-pyro")
+        tower = new Tower(x, y, 100, facing, ".game", "tower-pyro")
     }
 
     if(!tower){

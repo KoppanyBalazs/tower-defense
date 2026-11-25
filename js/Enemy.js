@@ -100,7 +100,7 @@ class Enemy{
         }, 25)
     }
 
-  takeDamage(damage){
+takeDamage(damage){
     this.#health -= damage
     this.#bar.style.width = (this.#health / 4 * 100) + "%"
 
