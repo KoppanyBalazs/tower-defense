@@ -1,3 +1,5 @@
+const enemyDeathSound = new Audio("../audio/viking_death.mp3")
+enemyDeathSound.volume = 0.6
 class Enemy{
 
     #x
@@ -98,15 +100,24 @@ class Enemy{
         }, 25)
     }
 
-    takeDamage(damage){
-        this.#health -= damage
-        this.#bar.style.width = (this.#health / 4 * 100) + "%"
-        if(this.#health <= 0){
-            this.remove()
-            return true
-        }
-        return false
+  takeDamage(damage){
+    this.#health -= damage
+    this.#bar.style.width = (this.#health / 4 * 100) + "%"
+
+    if(this.#health <= 0){
+        enemyDeathSound.currentTime = 0
+        enemyDeathSound.play()
+
+        setTimeout(() => {
+            enemyDeathSound.pause()
+            enemyDeathSound.currentTime = 0
+        }, 1000)
+
+        this.remove()
+        return true
     }
+    return false
+}
 
     remove(){
         this.#alive = false

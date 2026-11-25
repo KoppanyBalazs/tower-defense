@@ -1,3 +1,10 @@
+const fireballSound = new Audio("../audio/fireball.mp3")
+const pyroSound = new Audio("../audio/pyro.mp3")
+
+fireballSound.volume = 0.5
+pyroSound.volume = 0.2
+var pyroSoundTime = 0
+
 class Bullet{
 
     #x
@@ -12,7 +19,7 @@ class Bullet{
     #direction
 
     static pont = 400;
-
+ 
 
     constructor(x, y, speed, dam, target, container){
         this.setX(x)
@@ -84,6 +91,19 @@ class Bullet{
         this.#element.style.top = this.#y + "px"
         this.#element.classList.add("bullet")
         this.#container.appendChild(this.#element)
+if (this.#container) {
+    if (this.#dam == 0.15) {
+if (Date.now() - pyroSoundTime > 3000) {
+    pyroSound.currentTime = 0
+    pyroSound.play()
+    pyroSoundTime = Date.now()
+}
+    }
+    else {
+        fireballSound.currentTime = 0
+        fireballSound.play()
+    }
+}
         this.move()
         
     }

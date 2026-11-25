@@ -9,18 +9,23 @@ game_area.classList.add("gamehatter")
 
 var hp_interval = null
 
+const buildSound = new Audio("../audio/build.mp3")
+
 const music = [
-    new Audio("../audio/holst_mars.mp3"),
-    new Audio("../audio/wagner_valkyries.mp3"),
-    new Audio("../audio/farewell_of_slavianka.mp3"),
-    new Audio("../audio/shostakovich_waltz_no_2.mp3"),
+    //new Audio("../audio/holst_mars.mp3"),
+   // new Audio("../audio/wagner_valkyries.mp3"),
+   // new Audio("../audio/farewell_of_slavianka.mp3"),
+   // new Audio("../audio/shostakovich_waltz_no_2.mp3"),
     new Audio("../audio/stronghold_appy_times.mp3"),
-    new Audio("../audio/stronghold_castle_jam.mp3"),
-    new Audio("../audio/stronghold_the_chant.mp3"),
-    new Audio("../audio/the_varangians_faraji.mp3"),
-    new Audio("../audio/venice_combat_ac2.mp3"),
-    new Audio("../audio/william_tell.mp3"),
+    //new Audio("../audio/stronghold_castle_jam.mp3"),
+   // new Audio("../audio/stronghold_the_chant.mp3"),
+   // new Audio("../audio/the_varangians_faraji.mp3"),
+   // new Audio("../audio/venice_combat_ac2.mp3"),
+   // new Audio("../audio/william_tell.mp3"),
 ]
+music.forEach(zene => {
+    zene.volume = 0.6
+})
 music_played = music[Math.floor(Math.random() * music.length)]
 music_played.play()
 
@@ -106,6 +111,7 @@ function new_tower(x, y, spot){
         dam = 2
         Bullet.pont -= magusar;
         tower = new Tower(x, y, 1500, "e", ".game", "tower")
+        
     }
     else if(place == "lang" && Bullet.pont >= langar){
         dam = 0.15
@@ -125,6 +131,8 @@ function new_tower(x, y, spot){
     })
 
     towers.push(tower)
+    buildSound.currentTime = 0
+    buildSound.play()
     place = ""
 }
 
