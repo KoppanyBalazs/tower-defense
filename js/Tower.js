@@ -7,13 +7,16 @@ class Tower{
     #container
     #element
     #shoot_interval
+    #type
 
-    constructor(x, y, interval_ms, facing, container){
+
+    constructor(x, y, interval_ms, facing, container, type = "tower"){
         this.setX(x)
         this.setY(y)
         this.setIntervalMs(interval_ms)
         this.setFacing(facing)
         this.setContainer(container)
+        this.#type = type
         this.create()
     }
 
@@ -57,11 +60,13 @@ class Tower{
         this.#element = document.createElement("div")
         this.#element.style.left = this.#x + "px"
         this.#element.style.top = this.#y + "px"
-        this.#element.classList.add("tower")
+        this.#element.classList.add(this.#type)
         this.#element.classList.add(`facing-${this.getFacing()}`)
         console.log(this.#element)
         console.log(this.#container)
         this.#container.appendChild(this.#element)
+        this.#element.addEventListener("click", () => {
+        upgradeModal.show()})
     }
 
     shoot(func_to_execute){

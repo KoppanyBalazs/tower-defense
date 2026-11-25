@@ -2,6 +2,7 @@ const towers = []
 const enemies = []
 const tower_range = 200
 const lose_modal = new bootstrap.Modal('#myModal')
+const upgradeModal = new bootstrap.Modal('#upgrades')
 var gameloop = null
 var game_area = document.querySelector(".game")
 game_area.classList.add("gamehatter")
@@ -104,13 +105,18 @@ function new_tower(x, y, spot){
     if(place == "magus" && Bullet.pont >= magusar){
         dam = 2
         Bullet.pont -= magusar;
-        tower = new Tower(x, y, 1500, "e", ".game")
+        tower = new Tower(x, y, 1500, "e", ".game", "tower")
     }
     else if(place == "lang" && Bullet.pont >= langar){
         dam = 0.15
         Bullet.pont -= langar;
-        tower = new Tower(x, y, 100, "e", ".game")
+        tower = new Tower(x, y, 100, "e", ".game", "tower-pyro")
     }
+
+    if(!tower){
+        return
+    }
+
     tower.shoot(() => {
         let target = nearest_enemy(tower)
         if (target != null) {

@@ -73,7 +73,7 @@ footer {
 
 background-image: url(../img/tower_spot.png);}
 
-.tower{
+.tower, .tower-pyro{
     width: 70px;
     height: 70px;
     position: absolute;
@@ -81,6 +81,11 @@ background-image: url(../img/tower_spot.png);}
     background-size: contain;
     background-repeat: no-repeat;
     image-rendering: pixelated;
+}
+.tower-pyro{
+    background-image:url(../img/pyro_torony.png) ;
+    width: 90px;
+    height: 90px;
 }
 .gamehatter {
     background-image:url(../img/gta4nicoserbialol.png);
@@ -149,4 +154,7 @@ i {
     width: 100%;
     height: 5px;
     background-color: limegreen;
+}
+.upgrade{
+background-image:url(../img/chest.jpeg) ;
 }
