@@ -99,7 +99,7 @@ class Bullet{
             let distance = Math.sqrt(dx * dx + dy * dy)
 
             if(distance <= Math.abs(this.getSpeed()[0])){
-                if(this.#target.takeDamage(0.01)){
+                if(this.#target.takeDamage(2)){
                     Bullet.pont += 10
                 }
                 this.remove()
