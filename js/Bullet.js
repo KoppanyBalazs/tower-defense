@@ -5,7 +5,7 @@ fireballSound.volume = 0.5
 pyroSound.volume = 0.2
 var pyroSoundTime = 0
 
-class Bullet{
+class Bullet {
 
     #x
     #y
@@ -16,12 +16,11 @@ class Bullet{
     #container
     #element
     #move_interval
-    #direction
 
-    static pont = 400;
- 
+    static #pont = 250;
+    static #pont_collected = 0
 
-    constructor(x, y, speed, dam, target, container){
+    constructor(x, y, speed, dam, target, container) {
         this.setX(x)
         this.setY(y)
         this.setSpeed(speed)
@@ -29,88 +28,98 @@ class Bullet{
         this.setTarget(target)
         this.setContainer(container)
         this.create()
-        
+
     }
 
-    setX(x){
+    setX(x) {
         this.#x = x
     }
 
-    setY(y){
+    setY(y) {
         this.#y = y
     }
 
-    setSpeed(speed){
+    setSpeed(speed) {
         this.#speed = speed
     }
 
-    setDam(dam){
+    setDam(dam) {
         this.#dam = dam
     }
 
-    setTarget(target){
+    setTarget(target) {
         this.#target = target
     }
 
 
-    setContainer(container){
+    setContainer(container) {
         this.#container = document.querySelector(container)
     }
 
-    getX(){
+    static setPont(pont){
+        Bullet.#pont = pont
+    }
+
+    getX() {
         return this.#x
     }
 
-    getY(){
+    getY() {
         return this.#y
     }
 
-    getSpeed(){
+    getSpeed() {
         return this.#speed
     }
 
-    getDam(){
+    getDam() {
         return this.#dam
     }
 
-    getIntervalMs(){
+    getIntervalMs() {
         return this.#interval_ms
     }
 
-    getTarget(){
+    getTarget() {
         return this.#target
     }
 
-    getContainer(){
+    getContainer() {
         return this.#container
     }
 
-    create(){
+    static getPont(){
+        return Bullet.#pont
+    }
+
+    static getPont_collected(){
+        return Bullet.#pont_collected
+    }
+
+    create() {
         this.#element = document.createElement("div")
         this.#element.style.left = this.#x + "px"
         this.#element.style.top = this.#y + "px"
         this.#element.classList.add("bullet")
         this.#container.appendChild(this.#element)
-if (this.#container) {
-    if (this.#dam == 0.15) {
-if (Date.now() - pyroSoundTime > 3000) {
-    pyroSound.currentTime = 0
-    pyroSound.play()
-    pyroSoundTime = Date.now()
-}
-    }
-    else {
-        fireballSound.currentTime = 0
-        fireballSound.play()
-    }
-}
+        if (this.#dam == 0.15) {
+            if (Date.now() - pyroSoundTime > 3000) {
+                pyroSound.currentTime = 0
+                pyroSound.play()
+                pyroSoundTime = Date.now()
+            }
+        }
+        else {
+            fireballSound.currentTime = 0
+            fireballSound.play()
+        }
         this.move()
-        
+
     }
 
-    move(){
+    move() {
         this.#move_interval = setInterval(() => {
-            if(!this.#target.isAlive()){
+            if (!this.#target.isAlive()) {
                 this.remove()
                 return
             }
@@ -120,12 +129,12 @@ if (Date.now() - pyroSoundTime > 3000) {
 
             let dx = target_x - this.getX()
             let dy = target_y - this.getY()
-            let distance = Math.sqrt(dx * dx + dy * dy)
+            let distance = Math.sqrt(dx * dx + dy * dy)//x és y távolság összegzése
 
-            if(distance <= Math.abs(this.getSpeed())){
-                console.log(this.getDam())
-                if(this.#target.takeDamage(this.getDam())){
-                    Bullet.pont += 10
+            if (distance <= Math.abs(this.getSpeed())) {
+                if (this.#target.takeDamage(this.getDam())) {
+                    Bullet.#pont += 10
+                    Bullet.#pont_collected += 10
                 }
                 this.remove()
                 return
@@ -135,14 +144,12 @@ if (Date.now() - pyroSoundTime > 3000) {
             this.setX(this.getX() + (dx / distance) * this.getSpeed())
             this.setY(this.getY() + (dy / distance) * this.getSpeed())
 
-
             this.#element.style.left = this.getX() + "px"
             this.#element.style.top = this.getY() + "px"
-            this.#element.style.transform = `translate(-50%, -50%) rotate(${Math.atan2(dy, dx)}rad)`
         }, 25)
     }
 
-    remove(){
+    remove() {
         clearInterval(this.#move_interval)
         this.#element.remove()
     }

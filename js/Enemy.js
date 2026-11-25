@@ -9,15 +9,16 @@ class Enemy{
     #element
     #move_interval
     #alive = true
-    #health = 4
+    #health
     #bar
     static #hp = 3
 
 
-    constructor(x, y, speed, container){
+    constructor(x, y, speed, health, container){
         this.setX(x)
         this.setY(y)
         this.setSpeed(speed)
+        this.setHealth(health)
         this.setContainer(container)
     }
 
@@ -35,6 +36,14 @@ class Enemy{
 
     setContainer(container){
         this.#container = document.querySelector(container)
+    }
+
+    setHealth(health){
+        this.#health = health
+    }
+
+    static setHp(hp){
+        this.#hp = hp
     }
 
     getX(){
