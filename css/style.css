@@ -73,7 +73,7 @@ footer {
 
 background-image: url(../img/tower_spot.png);}
 
-.tower, .tower-pyro{
+.tower{
     width: 70px;
     height: 70px;
     position: absolute;
@@ -81,7 +81,14 @@ background-image: url(../img/tower_spot.png);}
     background-repeat: no-repeat;
     image-rendering: pixelated;
 }
-
+ .tower-pyro{
+    width: 90px;
+    height: 90px;
+    position: absolute;
+    background-size: contain;
+    background-repeat: no-repeat;
+    image-rendering: pixelated;
+}
 .tower.facing-e{
     background-image: url(../img/characters/magus_torony_e.png);
 }
@@ -91,10 +98,10 @@ background-image: url(../img/tower_spot.png);}
 }
 
 .tower-pyro.facing-e{
-    background-image:url(../img/characters/pyro_torony_e.png) ;
+    background-image:url(../img/characters/pyro_torony.png) ;
 }
 .tower-pyro.facing-w{
-    background-image:url(../img/characters/pyro_torony_w.png) ;
+    background-image:url(../img/characters/pyro_torony.png) ;
 }
 
 .gamehatter {
