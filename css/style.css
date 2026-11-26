@@ -147,12 +147,15 @@ i {
 .bi-discord{
     color: #424549;}
 .bullet{
-    width: 50px;
+    width: 30px;
     height: 30px;
     position: absolute;
     background-image:url(../img/fireball.png) ;
     background-size: contain;
     background-repeat: no-repeat;
+}
+.mine{
+    background-image: url(../img/characters/mine.png);
 }
 .kicsikep{
     width: 40px;

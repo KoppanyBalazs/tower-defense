@@ -88,6 +88,10 @@ class Bullet {
         return this.#container
     }
 
+    getElement(){
+        return this.#element
+    }
+
     static getPont(){
         return Bullet.#pont
     }
@@ -131,7 +135,7 @@ class Bullet {
             let dy = target_y - this.getY()
             let distance = Math.sqrt(dx * dx + dy * dy)//x és y távolság összegzése
 
-            if (distance <= Math.abs(this.getSpeed())) {
+            if (distance <= Math.abs(this.getSpeed()) + 30) {
                 if (this.#target.takeDamage(this.getDam())) {
                     Bullet.#pont += 10
                     Bullet.#pont_collected += 10
