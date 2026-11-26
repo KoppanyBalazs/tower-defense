@@ -1,4 +1,3 @@
-
 var e1 = new Enemy(100, 0, 2, 3, ".game-area")
 console.assert(e1.getX() === 100, "Enemy: getX hiba")
 console.assert(e1.getY() === 0, "Enemy: getY hiba")

@@ -67,7 +67,7 @@ gameloop = setInterval(() => {
     enemy.create()
     enemies.push(enemy)
     console.log((2200 - (difficulty * 200) >= 300) ?  2200 - (difficulty * 200) : 300)
-}, (2200 - (difficulty * 200) > 300) ?  2200 - (difficulty * 200) : 300) //Minimum 300 ms-enként jön enemy, alapból 2000 - (körök száma * 200) ms-enként 
+}, (2200 - (difficulty * 200) > 300) ?  2200 - (difficulty * 200) : 300)
 
 pont_interval = setInterval(() => {
     difficulty = 1 + parseInt(Bullet.getPont_collected() / 100)

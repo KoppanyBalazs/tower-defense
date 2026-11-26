@@ -41,7 +41,7 @@ setTimeout(() => {
 var lovesek3 = 0
 var t3 = new Tower(200, 200, 200, "e", ".game-area", "tower")
 t3.shoot(() => { lovesek3++ })
-t3.upgrade() // 140 ms
+t3.upgrade()
 setTimeout(() => {
     console.assert(lovesek3 >= 3, "Tower: upgrade után is lőnie kell, lett: " + lovesek3)
     t3.remove()
