@@ -51,7 +51,7 @@ class Tower{
         return this.#y
     }
 
-    getIntervalMs(){
+    getInterval_ms(){
         return this.#interval_ms
     }
 
@@ -75,11 +75,15 @@ class Tower{
     }
 
     shoot(func_to_execute){
-        this.#shoot_interval = setInterval(func_to_execute, this.getIntervalMs())
+        this.#shoot_interval = setInterval(func_to_execute, this.getInterval_ms())
     }
 
     remove(){
         clearInterval(this.#shoot_interval)
         this.#element.remove()
+    }
+
+    debugger_tool(){
+        return `${this.getX()};${this.getY()};${this.getInterval_ms()};${this.getFacing()};${this.getContainer()};${this.getType()}`
     }
 }

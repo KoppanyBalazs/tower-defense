@@ -17,7 +17,7 @@ class Bullet {
     #element
     #move_interval
 
-    static #pont = 250;
+    static #pont = 200;
     static #pont_collected = 0
 
     constructor(x, y, speed, dam, target, container) {
@@ -152,5 +152,9 @@ class Bullet {
     remove() {
         clearInterval(this.#move_interval)
         this.#element.remove()
+    }
+    
+    debugger_tool(){
+        return `${this.getX()};${this.getY()};${this.getSpeed()};${this.getDam()};${this.getTarget()};${this.getContainer()}`
     }
 }

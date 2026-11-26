@@ -53,14 +53,15 @@ for (let i = 0; i < 8; i++) {
 
 gameloop = setInterval(() => {
     var x = 100
-    var speed = 2
+    var speed = (difficulty <= 3) ? difficulty  + Math.round((Math.random())) : 4
     enemy = new Enemy(x, 0, speed, difficulty + Math.round((Math.random())), ".game")
     enemy.create()
     enemies.push(enemy)
-}, 1000)
+    console.log((2000 - (difficulty * 200) >= 300) ?  2000 - (difficulty * 200) : 300)
+}, (2200 - (difficulty * 200) > 300) ?  2200 - (difficulty * 200) : 300) //Minimum 300 ms-enként jön enemy, alapból 2000 - (körök száma * 200) ms-enként 
 
 pont_interval = setInterval(() => {
-    difficulty = 1 + parseInt(Bullet.getPont_collected() / 150)
+    difficulty = 1 + parseInt(Bullet.getPont_collected() / 100)
     pont.innerHTML = Bullet.getPont();
     round.innerHTML = difficulty
 }, 20);
