@@ -79,6 +79,9 @@ class Enemy {
         this.#element.style.left = this.#x + "px"
         this.#element.style.top = this.#y + "px"
         this.#element.classList.add("enemy")
+        if (this.#health > 6.5) {
+            this.#element.classList.add("enemy-big")
+        }
         this.#bar = document.createElement("div")
         this.#bar.classList.add("hp-bar")
         this.#bar.style.width = (this.#health * 10) + "px"

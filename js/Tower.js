@@ -6,7 +6,9 @@ class Tower{
     #container
     #element
     #shoot_interval
+    #shoot_func
     #type
+    #level = 0
 
 
     constructor(x, y, interval_ms, facing, container, type = "tower"){
@@ -63,6 +65,10 @@ class Tower{
         return this.#type
     }
 
+    getLevel(){
+        return this.#level
+    }
+
     create(){
         this.#element = document.createElement("div")
         this.#element.style.left = this.#x + "px"
@@ -71,10 +77,24 @@ class Tower{
         this.#element.classList.add(`facing-${this.getFacing()}`)
         this.#container.appendChild(this.#element)
         this.#element.addEventListener("click", () => {
-        upgradeModal.show()})
+            open_upgrade(this)
+        })
+    }
+
+    upgrade(){
+        this.#element.classList.remove(`lvl-${this.#level}`)
+        this.#level++
+        this.#element.classList.add(`lvl-${this.#level}`)
+
+        this.setIntervalMs(Math.round(this.#interval_ms * 0.7))
+        clearInterval(this.#shoot_interval)
+        if(this.#shoot_func){
+            this.shoot(this.#shoot_func)
+        }
     }
 
     shoot(func_to_execute){
+        this.#shoot_func = func_to_execute
         this.#shoot_interval = setInterval(func_to_execute, this.getInterval_ms())
     }
 

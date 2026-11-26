@@ -4,12 +4,18 @@ const pont = document.querySelector(".pont")
 const round = document.querySelector(".round")
 const lose_modal = new bootstrap.Modal('#myModal')
 const upgradeModal = new bootstrap.Modal('#upgrades')
+const upgrade_bar = document.querySelector("#upgrade-bar")
+const upgrade_btn = document.querySelector("#upgrade-btn")
 const buildSound = new Audio("../audio/build.mp3")
 const towers = []
 const enemies = []
 const magusar = 150;
 const langar = 100
 const tower_range = 200
+const upgrade_costs = {
+    "tower": [80, 140, 200],
+    "tower-pyro": [100, 130, 210]
+}
 
 
 var gameloop = null
@@ -19,6 +25,7 @@ var pont_interval = null;
 var difficulty = 1
 var place = ""
 var tower_spot = null
+var selected_tower = null
 var tower_x = [20, 630, 90, 540]
 var tower_y = [140, 540, 225, 450, 50, 620]
 var tower_facing = ["e", "w"]
@@ -105,13 +112,13 @@ function new_tower(x, y, facing){
     if(place == "magus" && Bullet.getPont() >= magusar){
         dam = 2
         Bullet.setPont(Bullet.getPont() - magusar)
-        tower = new Tower(x, y, 1500, facing, ".game", "tower")
+        tower = new Tower(x, y, 1750, facing, ".game", "tower")
         
     }
     else if(place == "lang" && Bullet.getPont() >= langar){
         dam = 0.15
         Bullet.setPont(Bullet.getPont() - langar)
-        tower = new Tower(x, y, 100, facing, ".game", "tower-pyro")
+        tower = new Tower(x, y, 140, facing, ".game", "tower-pyro")
     }
 
     if(!tower){
@@ -130,6 +137,43 @@ function new_tower(x, y, facing){
     buildSound.play()
     place = ""
 }
+
+function open_upgrade(tower){
+    selected_tower = tower
+    refresh_upgrade()
+    upgradeModal.show()
+}
+
+function refresh_upgrade(){
+    let level = selected_tower.getLevel()
+    upgrade_bar.src = `img/upgrade${level}.png`
+
+
+    if(level >= 3){
+        upgrade_btn.innerHTML = "Maximum szint"
+        upgrade_btn.disabled = true
+        return
+    }
+
+    let cost = upgrade_costs[selected_tower.getType()][level]
+    upgrade_btn.innerHTML = `Upgrade - ${cost}g`
+    upgrade_btn.disabled = false
+}
+
+upgrade_btn.addEventListener("click", () => {
+    let level = selected_tower.getLevel()
+    if(level >= 3){
+        return
+    }
+    let cost = upgrade_costs[selected_tower.getType()][level]
+    if(Bullet.getPont() < cost){
+        upgrade_info.innerHTML = `Nincs elég pénzed! (${cost}g kell)`
+        return
+    }
+    Bullet.setPont(Bullet.getPont() - cost)
+    selected_tower.upgrade()
+    refresh_upgrade()
+})
 
 function end_game(){
     clearInterval(gameloop)

@@ -64,6 +64,10 @@ footer {
     background-image:url(../img/viking_balta_enemy.png) ;    
 }
 
+.enemy.enemy-big{
+    background-image: url(../img/tank_enemy.png);
+}
+
 .tower-spot{
     width: 70px;
     height: 70px;
@@ -101,8 +105,31 @@ background-image: url(../img/tower_spot.png);}
     background-image:url(../img/characters/pyro_torony_e.png) ;
 }
 .tower-pyro.facing-w{
-    background-image:url(../img/characters/pyro_torony_w.png) ;
+    background-image:url(../img/characters/pyro_torony_e.png) ;
 }
+
+
+.tower.lvl-1 {
+     background-image: url(../img/characters/magus_torony_lvl1.png); 
+    }
+.tower.lvl-2 {
+     background-image: url(../img/characters/magus_torony_lvl2.png); 
+    }
+.tower.lvl-3 {
+     background-image: url(../img/characters/magus_torony_lvl3.png); 
+    }
+
+
+.tower-pyro.lvl-1 {
+     background-image: url(../img/characters/pyro_torony_lvl1.png); 
+    }
+.tower-pyro.lvl-2 {
+     background-image: url(../img/characters/pyro_torony_lvl2.png); 
+    }
+.tower-pyro.lvl-3 {
+     background-image: url(../img/characters/pyro_torony_lvl3.png); 
+    }
+
 
 .gamehatter {
     background-image:url(../img/gta4nicoserbialol.png);
@@ -174,4 +201,8 @@ i {
 }
 .upgrade{
 background-image:url(../img/chest.jpeg) ;
+}
+.upgradebar{
+    width: 400px;
+    height: 200px;
 }
