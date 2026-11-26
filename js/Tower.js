@@ -1,17 +1,21 @@
 class Tower{
     #x
     #y
-    #speed
+    #interval_ms
     #facing
     #container
     #element
     #shoot_interval
+    #type
 
-    constructor(x, y, facing, container){
+
+    constructor(x, y, interval_ms, facing, container, type = "tower"){
         this.setX(x)
         this.setY(y)
+        this.setIntervalMs(interval_ms)
         this.setFacing(facing)
         this.setContainer(container)
+        this.setType(type)
         this.create()
     }
 
@@ -23,12 +27,20 @@ class Tower{
         this.#y = y
     }
 
+    setIntervalMs(interval_ms){
+        this.#interval_ms = interval_ms
+    }
+
     setFacing(facing){
         this.#facing = facing
     }
 
     setContainer(container){
         this.#container = document.querySelector(container)
+    }
+
+    setType(type){
+        this.#type = type
     }
 
     getX(){
@@ -39,25 +51,39 @@ class Tower{
         return this.#y
     }
 
+    getInterval_ms(){
+        return this.#interval_ms
+    }
+
     getFacing(){
         return this.#facing
+    }
+
+    getType(){
+        return this.#type
     }
 
     create(){
         this.#element = document.createElement("div")
         this.#element.style.left = this.#x + "px"
         this.#element.style.top = this.#y + "px"
-        this.#element.classList.add("tower")
+        this.#element.classList.add(this.#type)
         this.#element.classList.add(`facing-${this.getFacing()}`)
         this.#container.appendChild(this.#element)
+        this.#element.addEventListener("click", () => {
+        upgradeModal.show()})
     }
 
     shoot(func_to_execute){
-        this.#shoot_interval = setInterval(func_to_execute, 1500)
+        this.#shoot_interval = setInterval(func_to_execute, this.getInterval_ms())
     }
 
     remove(){
         clearInterval(this.#shoot_interval)
         this.#element.remove()
+    }
+
+    debugger_tool(){
+        return `${this.getX()};${this.getY()};${this.getInterval_ms()};${this.getFacing()};${this.getContainer()};${this.getType()}`
     }
 }
