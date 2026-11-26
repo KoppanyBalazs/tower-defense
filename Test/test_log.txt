@@ -1,0 +1,2 @@
+1. ÉSZREVÉTEL: az Enemy osztályt createlni kell mielőtt használhatóvá válna
+2. ASSZERT HIBA: a debugger_tool() nem megfelelő formátumban adja vissza az adatot

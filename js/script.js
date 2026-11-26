@@ -9,8 +9,9 @@ const upgrade_btn = document.querySelector("#upgrade-btn")
 const buildSound = new Audio("../audio/build.mp3")
 const towers = []
 const enemies = []
-const magusar = 150;
+const magusar = 150
 const langar = 100
+const aknaar = 25
 const tower_range = 200
 const upgrade_costs = {
     "tower": [80, 140, 200],
@@ -20,7 +21,7 @@ const upgrade_costs = {
 
 var gameloop = null
 var hp_interval = null
-var pont_interval = null;
+var pont_interval = null
 
 var difficulty = 1
 var place = ""
@@ -29,6 +30,7 @@ var selected_tower = null
 var tower_x = [20, 630, 90, 540]
 var tower_y = [140, 540, 225, 450, 50, 620]
 var tower_facing = ["e", "w"]
+const no_interaction_sound = new Audio("../audio/not_intractable.mp3")
 const music = [
     new Audio("../audio/music/holst_mars.mp3"),
     new Audio("../audio/music/stronghold_appy_times.mp3"),
@@ -64,7 +66,7 @@ gameloop = setInterval(() => {
     enemy = new Enemy(x, 0, speed, difficulty + Math.round((Math.random())), ".game")
     enemy.create()
     enemies.push(enemy)
-    console.log((2000 - (difficulty * 200) >= 300) ?  2000 - (difficulty * 200) : 300)
+    console.log((2200 - (difficulty * 200) >= 300) ?  2200 - (difficulty * 200) : 300)
 }, (2200 - (difficulty * 200) > 300) ?  2200 - (difficulty * 200) : 300) //Minimum 300 ms-enként jön enemy, alapból 2000 - (körök száma * 200) ms-enként 
 
 pont_interval = setInterval(() => {
@@ -119,6 +121,9 @@ function new_tower(x, y, facing){
         dam = 0.15
         Bullet.setPont(Bullet.getPont() - langar)
         tower = new Tower(x, y, 140, facing, ".game", "tower-pyro")
+    }
+    else if((place == "lang" && Bullet.getPont() < langar) || (place == "magus" && Bullet.getPont() < magusar)){
+        no_interaction_sound.play()
     }
 
     if(!tower){
@@ -198,7 +203,27 @@ document.querySelector(".magus").addEventListener("click", () => {
     place = "magus"
 })
 
-
 document.querySelector(".lang").addEventListener("click", () => {
     place = "lang"
+})
+
+document.querySelector(".akna").addEventListener("click", () => {
+    place = "akna"
+})
+
+game_area.addEventListener("click", (e) => {
+    if(place == "akna"){
+        let rect = game_area.getBoundingClientRect()
+        let tmp_tower = new Tower(e.clientX - rect.left, e.clientY - rect.top, 0, "e", ".game", "magus")
+        let target = nearest_enemy(tmp_tower)
+        if(target != null && Bullet.getPont() > aknaar){
+            Bullet.setPont(Bullet.getPont() - aknaar)
+            let akna = new Bullet(e.clientX - rect.left - 25, e.clientY - rect.top - 15, 0, 5, nearest_enemy(tmp_tower), ".game")
+            akna.getElement().classList.add("mine")
+        }
+        else{
+            no_interaction_sound.play()
+        }
+    }
+    
 })
